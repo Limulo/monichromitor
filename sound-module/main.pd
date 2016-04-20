@@ -1,0 +1,282 @@
+#N canvas 568 289 381 148 10;
+#X declare -lib mrpeach;
+#N canvas 452 489 651 222 OSC-manager 0;
+#X obj 10 10 cnv 15 120 30 empty empty OSC 5 12 0 14 -228856 -66577
+0;
+#X obj 15 64 import mrpeach;
+#X obj 15 88 udpreceive 12000;
+#X obj 15 138 unpackOSC;
+#X obj 107 18 bng 15 250 50 0 empty empty empty 17 7 0 10 -228856 -257985
+-1;
+#X obj 48 18 tgl 15 0 empty empty ON-OFF 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 15 113 spigot;
+#X obj 15 160 routeOSC /char /carriage;
+#X obj 15 184 s char;
+#X obj 85 184 s carriage;
+#X connect 2 0 6 0;
+#X connect 3 0 7 0;
+#X connect 5 0 6 1;
+#X connect 6 0 4 0;
+#X connect 6 0 3 0;
+#X connect 7 0 8 0;
+#X connect 7 1 9 0;
+#X coords 0 -1 1 1 120 30 2 10 10;
+#X restore 178 113 pd OSC-manager;
+#N canvas 521 136 402 416 master 0;
+#X obj 10 10 cnv 15 120 105 empty empty Master 5 12 0 14 -233017 -66577
+0;
+#X obj 150 292 dac~;
+#X obj 150 36 catch~;
+#X msg 321 75 \$1 20;
+#X obj 321 190 line~;
+#X obj 150 207 *~;
+#X obj 101 27 tgl 20 0 empty empty empty 30 7 0 10 -262144 -1 -1 0
+1;
+#X obj 19 60 hsl 100 15 0 1 0 0 empty empty vol -2 8 0 10 -257985 -1
+-1 0 1;
+#X msg 16 127 \; pd dsp \$1;
+#X obj 150 103 hip~ 500;
+#X obj 150 126 hip~ 500;
+#X obj 150 259 clip~ -1 1;
+#X obj 150 236 hip~ 5;
+#X obj 150 150 hip~ 500;
+#X obj 234 86 r fFilter;
+#X obj 174 180 throw~ to-recording;
+#X obj 16 87 bng 15 250 50 0 empty empty preset 17 7 0 10 -262144 -1
+-1;
+#X msg 16 334 \; fCarrier_control 5250 \; fModulator_control 8050 \;
+modIndex_control 800 \; fFilter_control 5000 \;;
+#N canvas 618 43 431 700 LICENSE 0;
+#X text 20 75 This program is free software: you can redistribute it
+and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation \, either version 3 of
+the License \, or (at your option) any later version.;
+#X text 20 158 This program is distributed in the hope that it will
+be useful \, but WITHOUT ANY WARRANTY \; without even the implied warranty
+of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+General Public License for more details.;
+#X text 20 244 You should have received a copy of the GNU General Public
+License along with this program. If not \, see <http://www.gnu.org/licenses/>.
+;
+#X obj 25 302 loadbang;
+#X msg 68 437 This program comes with ABSOLUTELY NO WARRANTY \;;
+#X msg 39 490 For details see "LICENSE" file.;
+#X obj 25 329 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 25 562 print;
+#X msg 54 457 This is free software \, and you are welcome to redistribute
+it under certain conditions \;;
+#X msg 83 416 Contact me: nicola@limulo.net \;;
+#X text 20 47 Copyright (C) 2016 Nicola Ariutti;
+#X msg 97 396 Copyright (C) 2016 Nicola Ariutti \;;
+#X text 20 9 Monichromitor Sound Module;
+#X msg 112 376 Monichromitor Sound Module \;;
+#X obj 25 351 t b b b b b b b;
+#X msg 25 511 This patch is also usign the "mrpeach" library by Martin
+Peach.;
+#X connect 3 0 6 0;
+#X connect 4 0 7 0;
+#X connect 5 0 7 0;
+#X connect 6 0 14 0;
+#X connect 8 0 7 0;
+#X connect 9 0 7 0;
+#X connect 11 0 7 0;
+#X connect 13 0 7 0;
+#X connect 14 0 15 0;
+#X connect 14 1 5 0;
+#X connect 14 2 8 0;
+#X connect 14 3 4 0;
+#X connect 14 4 9 0;
+#X connect 14 5 11 0;
+#X connect 14 6 13 0;
+#X connect 15 0 7 0;
+#X restore 150 9 pd LICENSE;
+#X obj 16 305 loadbang;
+#X text 78 33 DSP;
+#X obj 81 87 tgl 15 0 empty empty test 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 81 239 bang;
+#X obj 81 217 metro 100;
+#X obj 81 261 s char;
+#X connect 2 0 9 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 1;
+#X connect 5 0 12 0;
+#X connect 6 0 8 0;
+#X connect 7 0 3 0;
+#X connect 9 0 10 0;
+#X connect 10 0 13 0;
+#X connect 11 0 1 0;
+#X connect 11 0 1 1;
+#X connect 12 0 11 0;
+#X connect 13 0 5 0;
+#X connect 13 0 15 0;
+#X connect 14 0 9 1;
+#X connect 14 0 10 1;
+#X connect 14 0 13 1;
+#X connect 16 0 17 0;
+#X connect 19 0 17 0;
+#X connect 21 0 23 0;
+#X connect 22 0 24 0;
+#X connect 23 0 22 0;
+#X coords 0 -1 1 1 120 105 2 10 10;
+#X restore 178 4 pd master;
+#N canvas 67 422 494 296 computer_sounds 0;
+#X obj 10 10 cnv 15 170 140 empty empty SOUND_CONTROLS 5 12 0 14 -228856
+-66577 0;
+#X obj 20 228 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 313 13 loadbang;
+#X obj 190 211 t b;
+#X obj 190 6 r char;
+#X obj 313 184 s charVol;
+#N canvas 400 52 514 364 charSound 0;
+#X obj 27 6 inlet bang;
+#X obj 27 44 f;
+#X obj 55 44 + 1;
+#X msg 108 27 1;
+#X obj 108 6 loadbang;
+#X floatatom 27 158 5 0 0 0 - - -;
+#X obj 27 179 route 0 1 2 3 4 5 6 7;
+#X obj 27 66 mod 16;
+#X floatatom 277 158 5 0 0 0 - - -;
+#X obj 277 179 route 0 1 2 3 4 5 6 7;
+#X floatatom 27 88 5 0 0 0 - - -;
+#X obj 27 109 moses 8;
+#X obj 277 126 - 8;
+#X obj 3 27 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 183 196 singlesound;
+#X obj 183 216 singlesound;
+#X obj 183 236 singlesound;
+#X obj 183 256 singlesound;
+#X obj 183 276 singlesound;
+#X obj 183 296 singlesound;
+#X obj 183 316 singlesound;
+#X obj 183 336 singlesound;
+#X obj 433 196 singlesound;
+#X obj 433 216 singlesound;
+#X obj 433 236 singlesound;
+#X obj 433 256 singlesound;
+#X obj 433 276 singlesound;
+#X obj 433 296 singlesound;
+#X obj 433 316 singlesound;
+#X obj 433 336 singlesound;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 7 0;
+#X connect 2 0 1 1;
+#X connect 3 0 1 1;
+#X connect 4 0 3 0;
+#X connect 5 0 6 0;
+#X connect 6 0 14 0;
+#X connect 6 1 15 0;
+#X connect 6 2 16 0;
+#X connect 6 3 17 0;
+#X connect 6 4 18 0;
+#X connect 6 5 19 0;
+#X connect 6 6 20 0;
+#X connect 6 7 21 0;
+#X connect 7 0 10 0;
+#X connect 8 0 9 0;
+#X connect 9 0 22 0;
+#X connect 9 1 23 0;
+#X connect 9 2 24 0;
+#X connect 9 3 25 0;
+#X connect 9 4 26 0;
+#X connect 9 5 27 0;
+#X connect 9 6 28 0;
+#X connect 9 7 29 0;
+#X connect 10 0 11 0;
+#X connect 11 0 5 0;
+#X connect 11 1 12 0;
+#X connect 12 0 8 0;
+#X connect 13 0 1 0;
+#X restore 20 250 pd charSound;
+#X obj 23 84 hsl 100 15 0 1000 0 0 empty modIndex_control mod_index
+-2 8 0 10 -262130 -1 -1 7920 1;
+#X obj 23 62 hsl 100 15 0 12000 0 0 empty fModulator_control freq_modulator
+-2 8 0 10 -204786 -1 -1 6641 1;
+#X obj 23 40 hsl 100 15 20 6000 0 0 empty fCarrier_control freq_carrier
+-2 8 0 10 -261682 -1 -1 8658 1;
+#X obj 229 55 s fCarrier;
+#X obj 229 77 s fMod;
+#X obj 229 99 s modIndex;
+#X floatatom 140 40 5 0 0 0 - - -;
+#X floatatom 140 62 5 0 0 0 - - -;
+#X floatatom 140 84 5 0 0 0 - - -;
+#X obj 313 75 vsl 15 100 0 1 0 0 empty empty vol 0 -9 0 10 -262130
+-1 -1 9900 1;
+#X msg 313 39 1;
+#X obj 23 109 hsl 100 15 20 6000 0 0 empty fFilter_control freq_filter
+-2 8 0 10 -204800 -1 -1 8244 1;
+#X floatatom 140 109 5 0 0 0 - - -;
+#X obj 229 124 s fFilter;
+#X connect 1 0 6 0;
+#X connect 2 0 17 0;
+#X connect 3 0 1 0;
+#X connect 4 0 3 0;
+#X connect 7 0 12 0;
+#X connect 7 0 15 0;
+#X connect 8 0 11 0;
+#X connect 8 0 14 0;
+#X connect 9 0 10 0;
+#X connect 9 0 13 0;
+#X connect 16 0 5 0;
+#X connect 17 0 16 0;
+#X connect 18 0 19 0;
+#X connect 18 0 20 0;
+#X coords 0 -1 1 1 170 140 2 10 10;
+#X restore 3 4 pd computer_sounds;
+#N canvas 285 144 532 287 recording 0;
+#N canvas 329 352 565 279 recording-util 0;
+#X msg 483 135 stop;
+#X obj 322 35 loadbang;
+#X msg 309 57 0;
+#X obj 209 93 f 0;
+#X obj 240 93 + 1;
+#X floatatom 209 114 5 0 0 0 - - -;
+#X obj 209 57 t b b;
+#X obj 209 13 r start;
+#X obj 309 13 r reset;
+#X obj 483 11 r stop;
+#X obj 125 13 inlet~ mono;
+#X obj 125 248 writesf~ 1;
+#X msg 209 159 open sounds/\$1_mono.wav \, start;
+#X connect 0 0 11 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 1;
+#X connect 3 0 4 0;
+#X connect 3 0 5 0;
+#X connect 4 0 3 1;
+#X connect 5 0 12 0;
+#X connect 6 0 3 0;
+#X connect 6 1 0 0;
+#X connect 7 0 6 0;
+#X connect 8 0 2 0;
+#X connect 9 0 0 0;
+#X connect 10 0 11 0;
+#X connect 12 0 11 0;
+#X restore 160 39 pd recording-util;
+#X obj 95 85 s start;
+#X obj 16 215 s reset;
+#X obj 16 188 s stop;
+#X obj 95 60 t b b;
+#X obj 10 10 cnv 15 75 140 empty empty Record 8 12 0 14 -228856 -66577
+0;
+#X obj 17 40 bng 20 250 50 0 empty empty START 25 7 0 10 -4034 -1 -1
+;
+#X obj 16 77 bng 20 250 50 0 empty empty STOP 25 7 0 10 -258113 -1
+-1;
+#X obj 16 112 bng 20 250 50 0 empty empty RESET 25 7 0 10 -257985 -1
+-1;
+#X obj 160 12 catch~ to-recording;
+#X connect 4 0 1 0;
+#X connect 4 1 7 0;
+#X connect 6 0 4 0;
+#X connect 7 0 3 0;
+#X connect 8 0 2 0;
+#X connect 9 0 0 0;
+#X coords 0 -1 1 1 75 140 2 10 10;
+#X restore 302 3 pd recording;
